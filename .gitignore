@@ -26,3 +26,21 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+*/__pycache__/
+local_settings.py
+app02/__pycache__/__init__.cpython-312.pyc
+app02/__pycache__/settings.cpython-312.pyc
+
+.env
+db.sqlite3
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
