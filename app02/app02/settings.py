@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'messenger',
     'profiles',
     'pages.apps.PagesConfig',
+    'friendship',
 ]
 
 MIDDLEWARE = [
