@@ -23,6 +23,7 @@ class FriendRequest(models.Model):
 
     def accept(self):
         Friendship.objects.create(user1=self.from_user, user2=self.to_user)
+        Friendship.objects.create(user1=self.to_user, user2=self.from_user)
         self.accepted = True
         self.save()
 

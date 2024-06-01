@@ -23,10 +23,10 @@
                 <tbody>
                     {% if request.user.is_authenticated %}
                     {% for rq in friendrequest_list %}
-                    {% if rq.to_user == request.user%}
+                    {% if rq.to_user.user == request.user%}
                     <tr class="">
                         <td><img
-                            src="{{ request.from_user.avatar.url }}"
+                            src="{{ rq.from_user.avatar.url }}"
                             class="img-fluid rounded-circle"
                             alt=""
                             width="75"
