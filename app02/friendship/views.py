@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from registration.models import Profile
 from django.contrib.auth.models import User
 from .models import FriendRequest, Friendship
@@ -19,3 +19,18 @@ def friend_list(request):
     friends = Friendship.objects.filter(user1=profile)
     return render(request, 'friendship/friendship_list.html', {'friend_list': friends})
     
+def accept_request(request, id):
+    friend_request = FriendRequest.objects.get(id=id)
+    friend_request.accept()
+    friend_request.decline()
+    return redirect('friendship:friendrequest_list')
+
+def decline_request(request, id):
+    friend_request = FriendRequest.objects.get(id=id)
+    friend_request.decline()
+    return redirect('friendship:friendrequest_list')
+
+def delete_friend(request, id):
+    friendship = Friendship.objects.get(id=id)
+    friendship.delete_friend()
+    return redirect('friendship:friend_list')

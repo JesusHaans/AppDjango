@@ -9,8 +9,13 @@ class Friendship(models.Model):
     class Meta:
         unique_together = ('user1', 'user2')
 
+    def delete_friend(self):
+        friendship1 = Friendship.objects.get(user1=self.user2, user2=self.user1)
+        friendship1.delete()
+        self.delete()
+
     def __str__(self):
-        return f"Friendship between {self.user1} and {self.user2}"
+        return f"Amistad entre {self.user1.user} y {self.user2.user}"
 
 class FriendRequest(models.Model):
     from_user = models.ForeignKey(Profile, related_name='friend_requests_sent', on_delete=models.CASCADE)
@@ -31,4 +36,4 @@ class FriendRequest(models.Model):
         self.delete()
 
     def __str__(self):
-        return f"Friend request from {self.from_user} to {self.to_user}"
+        return f"Solicitud de amistad de {self.from_user.user} para {self.to_user.user}"

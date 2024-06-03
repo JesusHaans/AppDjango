@@ -46,9 +46,9 @@
                         {% endif %}
                         <td>{{rq.from_user.user}} Quiere ser tu amigo. </td>
                         <td>
-                            <a class="btn btn-info btn-sm " href="" role="button"> Aceptar </a> 
+                            <a class="btn btn-info btn-sm " href="{% url 'friendship:accept_request' rq.pk %}" role="button"> Aceptar </a> 
                             | 
-                            <a class="btn btn-danger btn-sm " href="" role="button"> Rechazar </a>
+                            <a class="btn btn-danger btn-sm " href="{% url 'friendship:decline_request' rq.pk %}" role="button"> Rechazar </a>
                         </td>
                     </tr>
                     {% endif %}

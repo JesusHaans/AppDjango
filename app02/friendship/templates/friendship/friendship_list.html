@@ -21,12 +21,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for friendship in friendship_list %}
-                    {% if friendship.friendship_user1.user == request.user %}
+                    {% if request.user.is_authenticated%}
+                    {% for friendship in friend_list %}
+                    {% if friendship.user1.user == request.user %}
                     <tr class="">
-                        {% if friendship.friendship_user2.avatar %}
+                        {% if friendship.user2.avatar %}
                         <td><img
-                            src="{{ friendship.friendship_user2.avatar.url }}"
+                            src="{{ friendship.user2.avatar.url }}"
                             class="img-fluid rounded-circle"
                             alt=""
                             width="75"
@@ -43,19 +44,18 @@
                         </td>
                         {% endif %}
                         </td>
-                        <td>{{friendship.friendship_user2.user}} Es tu amigo</td>
+                        <td>{{friendship.user2.user}} Es tu amigo</td>
                         <td>
-                            {% if request.user != friendship.friendship_user2.user %}
-                            <a href="{% url 'messenger:start' friendship.friendship_user2.user.username %}" class="btn btn-primary btn-sm btn-block mt-3">
-                                Enviar mensaje
-                            </a>
+                            {% if request.user != friendship.user2.user %}
+                            <a href="{% url 'messenger:start' friendship.user2.user.username %}" class="btn btn-info btn-sm"> Enviar mensaje </a>
                             {% endif %}
                             | 
-                            <a class="btn btn-danger btn-sm " href="" role="button"> Eliminar </a>
+                            <a class="btn btn-danger btn-sm " href="{% url 'friendship:delete_friend' friendship.pk %}" role="button"> Eliminar </a>
                         </td>
                     </tr>
                     {% endif %}
                     {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>
